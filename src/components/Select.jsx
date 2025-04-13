@@ -2,7 +2,7 @@ import React, {useId} from "react";
 
 function Select ({
 
-    PushSubscriptionOptions,
+    options,
     label,
     className = '',
     ...props

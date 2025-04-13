@@ -4,6 +4,7 @@ import './App.css'
 import authService from './appwrite/auth';
 import { login, logout } from './store/authSlice';
 import { Footer, Header } from './components/index';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -15,6 +16,7 @@ function App() {
       if(userData){
         dispatch(login({userData}))
       }
+      else{dispatch(logout())}
     })
     .finally(()=>{setLoading(false)})
   },[])
@@ -30,7 +32,7 @@ function App() {
       <div className="w-full block">
         <Header/>
           <main>
-            {/* <Outlet/> */}
+            TODO:<Outlet/>
           </main>
         <Footer/>
       </div>

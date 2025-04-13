@@ -77,7 +77,7 @@ export class Service{
     async getPost(slug){
         try {
             
-            await this.databases.getDocument(
+            return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug
@@ -93,7 +93,7 @@ export class Service{
     async getPosts(queries = [Query.equal("status","active")]){
         try {
           
-            await this.databases.listDocuments(
+            return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries,
@@ -149,4 +149,4 @@ export class Service{
 
 const service = new Service()
 
-export default Service
+export default service
