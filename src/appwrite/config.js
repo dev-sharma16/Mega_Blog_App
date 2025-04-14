@@ -137,12 +137,16 @@ export class Service{
         }
     }
 
-    getFilePreview(fileId){
-       return this.bucket.getFilePreview(
-            conf.appwriteBucketId,
-            fileId
-        )
-
+    // not using this method because image translation is not allowed in the appwrite free plan
+    // getFilePreview(fileId){
+    //    return this.bucket.getFilePreview(
+    //         conf.appwriteBucketId,
+    //         fileId
+    //     ).href
+    // }
+    // using getFileView because it is accesable in free plan
+    getFileView(fileId){
+        return this.bucket.getFileView(conf.appwriteBucketId, fileId)
     }
 
 }
