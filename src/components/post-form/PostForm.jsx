@@ -20,7 +20,7 @@ export default  function PostForm({post}){
     })
 
     const navigate = useNavigate()
-    const userData = useSelector(state => state.user.userData)
+    const userData = useSelector(state => state.auth.userData)
 
     const submit = async (data)=>{
         if (post) {
@@ -36,24 +36,26 @@ export default  function PostForm({post}){
             })
             if (dbpost) {
                 navigate(`/post/${dbpost.$id}`)
-            }
-            else{
-                const file = await appwriteService.uploadFile(data.image[0])
-
-                if (file) {
-                    const fileId = file.$id
-                    data.featuredImage = fileId
-                    const dbPost = await appwriteService.createPost({
-                        ...data,
-                        userId: userData.$id,
-                    })
-                    if(dbPost){
-                        navigate(`/post/${dbPost.$id}`)
-                    }
-
+            }            
+        } else{
+                if (data.image && data.image[0]) {
+                     const file = await appwriteService.uploadFile(data.image[0])
+                     
+                     if (file) { 
+                         const fileId = file.$id
+                         data.featuredImage = fileId
+                         const dbPost = await appwriteService.createPost({...data,userId: userData.$id,})
+                     if(dbPost){
+                         navigate(`/post/${dbPost.$id}`)
+                     }
+                     console.log("submit buttion is clicked");
+                     
+                  }
+                  else {
+                      console.error("Please upload an image for your post")
+                  }
                 }
             }
-        }
     }
 
     const slugTransform = useCallback((value)=>{
@@ -61,7 +63,7 @@ export default  function PostForm({post}){
             return value
                    .trim()
                    .toLowerCase()
-                   .replace(/^[a-zA-Z\d\s]/g, '-')
+                   .replace(/[^a-zA-Z\d\s]+/g, '-')
                    .replace(/\s/g, '-')
         }
 
@@ -120,7 +122,7 @@ export default  function PostForm({post}){
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full ">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>
