@@ -5,8 +5,7 @@ A full-featured **Blog Posting App** built with **React.js**, **Redux**, **Tailw
 > ✅ Create, Edit, View, and Delete blog posts  
 > 🔐 Includes user authentication with Appwrite  
 > 🖋️ Rich Text Editor (TinyMCE) for writing posts  
-> 🗂️ Image uploads and post previews  
-> 🚀 Built for learning full-stack development!
+> 🗂️ Image uploads and post previews
 
 ---
 
