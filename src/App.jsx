@@ -5,6 +5,7 @@ import authService from './appwrite/auth';
 import { login, logout } from './store/authSlice';
 import { Footer, Header } from './components/index';
 import { Outlet } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -36,6 +37,7 @@ function App() {
           </main>
         <Footer/>
       </div>
+      <Analytics />
     </div>
   ) : null
 
