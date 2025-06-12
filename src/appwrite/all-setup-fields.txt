@@ -1,0 +1,10 @@
+add-data(database):-
+    posts(collection):-
+        attributes:-
+             title(string)
+             content(string)
+             featuredImage(string)
+             userId(string)
+             status(string)
+
+post-images(bucket)
